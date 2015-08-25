@@ -176,11 +176,13 @@ pattern.weekends = aggregate(data[is.weekends,]$steps,
 Plot and compare the pattern.
 
 ```r
+# align y axis
+ylim = c(0, max(pattern.weekdays$x, pattern.weekends$x))
 par(mfrow=c(2,1), oma=c(5,4,0,0), mar=c(0,0,1,1))
-plot(pattern.weekdays, type="l", xlab="", ylab="", xaxt="n")
+plot(pattern.weekdays, type="l", ylim=ylim, xlab="", ylab="", xaxt="n")
 axis(1, at=0:24*100, labels= F)
 mtext("pattern in weekdays", 3, -1)
-plot(pattern.weekends, type="l", xlab="", ylab="", xaxt="n")
+plot(pattern.weekends, type="l", ylim=ylim, xlab="", ylab="", xaxt="n")
 mtext("pattern in weekends", 3, -1)
 axis(1, at=0:24*100, labels= paste(0:24, ":00", sep=""))
 title(xlab="time", ylab="number of steps", outer=T, cex.lab=1.2)
